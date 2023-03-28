@@ -1,0 +1,40 @@
+<html>
+    <head></head>
+    <body>
+        <input type="text" id="todo-title">
+        <button onclick="addTodo()">Add todo</button>
+        <!-- //Adding div's to this div instead of to body -->
+        <div id="todo-list"></div>
+        <script>
+            const todos = ['Get Groceries','Make Dinner','Wash Car']
+            render();
+
+            function addTodo(){
+                const title = document.getElementById('todo-title').value;
+                todos.push(title);
+                render();
+            }
+
+            function render(){
+                const todoList = document.getElementById('todo-list')
+                //resetting todoList
+                todoList.innerHTML = '';
+                todos.forEach(function(todoTitle){
+                    let element=document.createElement('div');
+                    element.innerText=todoTitle;
+                    todoList.appendChild(element);
+                });
+            }
+            //Exercise 7-1
+            let array1=['hi','hello'];
+            let array2=[];
+            array1.forEach(function(arr){
+                array2.push(arr);
+                array2.push(arr);
+
+            });
+            console.log(array2)
+
+        </script>
+    </body>
+</html>

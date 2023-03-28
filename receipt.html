@@ -1,0 +1,34 @@
+<html>
+    <!-- 2 -->
+    <div id="receipt"></div>
+    <script>
+        //1
+        let cart = [{
+            name :'Apple',
+            price : 3,
+            quantity : 2},
+            {
+            name :'Banana',
+            price : 4,
+            quantity : 3},
+            {
+            name :'Orange',
+            price : 2,
+            quantity : 4}
+        ];
+        let total=0; 
+        let receipt=document.getElementById('receipt');
+        receipt.innerHTML='';
+              
+        cart.forEach(function(todo){
+            total = total + (todo.price * todo.quantity);
+            const recadd = document.createElement('div'); 
+            recadd.innerText= todo.name +' $ '+ todo.quantity +' * '+ todo.price+" = $"+(todo.price * todo.quantity);
+            receipt.appendChild(recadd);
+        })
+        const totalLine = document.createElement('div');
+        totalLine.innerText = 'Cart total = $' + total;
+        receipt.appendChild(totalLine);
+
+    </script>
+</html>

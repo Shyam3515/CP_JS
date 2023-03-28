@@ -1,0 +1,143 @@
+<html>
+    <body>
+        <input type="text" id="todo-title">
+        <input type="date" id="date-picker">
+        <button onclick="addTodo()">Add todo</button>
+        <!-- //Adding div's to this div instead of to body -->
+        <div id="todo-list"></div>
+        <script>
+            //Model - contains all the code that saves and manages the data..
+            //For retrieving it we should check local storage,if it has todos array then use it,
+            //else use the default array...
+            let todos;
+
+            //Retrieve local storage
+            //converting back to array form from string form
+            const savedTodos = JSON.parse(localStorage.getItem('todos'));
+            //check if it's an array
+            if(Array.isArray(savedTodos)){
+                todos = savedTodos;
+            }else{
+                todos = [
+                {
+                title : 'Get Groceries',
+                dueDate : '2023-01-22',
+                id : 'id1'    
+                },
+                {
+                title : 'Wash Car',
+                dueDate : '2023-01-22',
+                id : 'id2'      
+                },
+                {
+                title : 'Make Dinner',
+                dueDate : '2023-01-22',
+                id : 'id3'  
+                }];
+            }
+
+            // todos = [
+            //     {
+            //     title : 'Get Groceries',
+            //     dueDate : '2023-01-22',
+            //     id : 'id1'    
+            //     },
+            //     {
+            //     title : 'Wash Car',
+            //     dueDate : '2023-01-22',
+            //     id : 'id2'      
+            //     },
+            //     {
+            //     title : 'Make Dinner',
+            //     dueDate : '2023-01-22',
+            //     id : 'id3'  
+            //     }
+            // ];
+            render();
+            //create todo
+            function createTodo(title,date){
+                //creating new id
+                //here we actually need to convert this number to a string,bcz while we are adding a new todo, 
+                //and trying to delete we can't,bcz it's id is a number, but the id that we get from array todo is a string version
+                //so when we compare it in a filter method it compares a string with number
+                const id='' + new Date().getTime();
+                //adding as object
+                todos.push({
+                    title : title,
+                    dueDate : date,
+                    id : id
+                });
+                saveTodos();
+            }
+            //delete todo
+            function removeTodo(idToDelete){
+                todos = todos.filter(function(todo){
+                    //if the id of todo matches the idToDelete, return false
+                    //for everything else return true
+                    if(todo.id===idToDelete){
+                        return false;
+                    }
+                    else{
+                        return true;
+                    }
+                });
+                saveTodos();
+            }
+
+            //browser helps us to save and retrieve our data in Local Storage...
+            //we should run this to ave our data, when there is change in data(i.e; in add and delete todos)
+            function saveTodos(){
+                localStorage.setItem('Todos',JSON.stringify(todos));
+            }
+
+            //controller - connects model and view together
+            // 1)Responds to events from the view(ex: buttons clicks).
+            // 2)Tells the model to update its data(and the view to render)
+            function addTodo(){
+                //taking text from text-box and adding to todo's
+                const title = document.getElementById('todo-title').value;
+                const date = document.getElementById('date-picker').value;
+
+                createTodo(title,date)
+                
+                render();
+            }
+            //Deleting function
+            //it provides an event when we click on that
+            //Inside this event ,we can actually get the button that was clicked
+            //and the property for that is called is target
+            function deleteTodo(event){
+                const deleteButton = event.target;
+                const idToDelete = deleteButton.id;
+                //filter method doesn't actually modify the original array, it actually creates the copy of array
+                //with this todo removed,so in order to update the original array, we have to overwrite the arrays variable
+                //and to update our webpage we are going to call render as our last step.
+                removeTodo(idToDelete);
+                render();
+            }
+
+            //View -contains code that manages visuals,renders visuals using data in model.
+            function render(){
+                const todoList = document.getElementById('todo-list');
+                //resetting todoList
+                todoList.innerHTML = '';
+                //passing todo as object
+                todos.forEach(function(todo){
+                    let element=document.createElement('div');
+                    element.innerText = todo.title +" --- "+todo.dueDate;//taking title property
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.innerText = 'Delete';
+                    deleteButton.style = 'margin-left:12px;';
+                    deleteButton.onclick = deleteTodo;
+                    //linking todo and delete by id
+                    //here we are assigning the todo id to deleteButton id
+                    deleteButton.id = todo.id;
+                    element.appendChild(deleteButton)
+                    //appending total element to todo list
+                    todoList.appendChild(element);
+                });
+            }
+        </script>
+    </body>
+</html>

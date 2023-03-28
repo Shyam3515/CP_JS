@@ -1,0 +1,55 @@
+<html>
+    <body>
+        <!-- Adding to Cart -->
+        <button onclick="addToCart('Tomato')">Tomato</button>
+        <button onclick="addToCart('Apple')">Apple</button>
+        <button onclick="addToCart('Egg')">Egg</button>
+        <button onclick="clearCart()">Clear</button>
+
+        <div id="cart"></div>
+        <br>
+        <!-- Convert inch-cm -->
+        <input id='text' type="text" placeholder="Enter the units"/>
+        <br><br>
+        <div>
+            <button onclick="Converter('cm')">To Cm</button>
+            <button onclick="Converter('inch')">To inch</button>
+        </div>
+        <div id="result"></div>
+
+        <script>
+            //1.
+            //const cart=document.getElementById('cart');
+            const cart = document.getElementById('cart');
+
+            function addToCart(food) {
+                const cartItem = document.createElement('div');
+                cartItem.innerText = food;
+                cart.appendChild(cartItem);
+            }
+
+            function clearCart(){
+                cart.innerHTML='';
+            }
+           
+            //2.
+            const measurement=document.getElementById('text');
+            const result=document.getElementById('result');
+
+            function Converter(convert){
+                result.innerText = '';
+                const value = measurement.value;
+                let convertedVal;
+                if(convert == 'cm'){
+                    convertedVal = + Number(value * 2.54).toFixed(2)+ " cm";
+                }
+                else{
+                    convertedVal = + Number(value / 2.54).toFixed(2)+ " inch";
+                }
+                const div = document.createElement('div')
+                div.innerText =convertedVal;
+                result.appendChild(div)
+            }
+        </script>
+    </body>
+</html>

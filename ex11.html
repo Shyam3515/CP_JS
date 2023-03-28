@@ -1,0 +1,29 @@
+<html>
+    <div id="result"></div>
+    <script>
+        let cart = [{
+            name :'Apple',
+            price : 3,
+            quantity : 2},
+            {
+            name :'Banana',
+            price : 4,
+            quantity : 3}
+        ]
+        //add button 
+        let total=0;
+        const result=document.getElementById('result')
+        cart.forEach(function(cart){
+           const div = document.createElement('div')
+           div.innerText= cart.name+" $"+cart.price
+           const button = document.createElement('button');
+           button.innerText = 'add';
+           button.onclick = function (){
+            total= total+Number(cart.price);
+            console.log(total)
+        };
+           div.appendChild(button)
+           result.appendChild(div)
+        })
+    </script>
+</html>

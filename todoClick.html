@@ -1,0 +1,106 @@
+<html>
+    <body>
+        <input id="todo-text" type="text">
+        <input id= "date-picker" type="date">
+        <button onclick="addTodo()">Add Todo</button>
+        <div id="todo-list"></div>
+        <script>
+            //Object
+            //to overwrite the array var in filter we have to change it to let from const
+
+            let todo;
+            const savedTodos = JSON.parse(localStorage.getItem('todos'));
+            if(Array.isArray(savedTodos)){
+                todo = savedTodos;
+            } else {
+                todo=
+                [{title:'Make Dinner',
+                 dueDate:'2022-06-12',
+                id:'id1'},
+                {title:'Car Wash',
+                 dueDate:'2022-06-12',
+                 id:'id2'},
+                {title:'Dry Wash',
+                 dueDate:'2022-06-12',
+                 id:'id3'}];
+            }  
+            render();
+
+            //creates todo
+            function createTodo(title,dueDate){
+                const id='' + new Date().getTime();
+                todo.push({
+                    title:title,
+                    dueDate:dueDate,
+                    id:id
+                });
+                saveTodos();
+            }
+            //deletes todo
+            function removeTodo(idToDelete){
+                todo = todo.filter(function(todo){
+                    //if the id of todo matches the idToDelete, return false
+                    //for everything else return true
+                    if(todo.id===idToDelete){
+                        return false;
+                    }
+                    else{
+                        return true;
+                    }
+                });
+                saveTodos();
+            }
+
+            function saveTodos(){
+                localStorage.setItem('todos',JSON.stringify(todo))
+            }
+
+            //Controls
+            function addTodo(){
+                const todo_text=document.getElementById('todo-text');
+                const title=todo_text.value;
+
+                const date_picker=document.getElementById('date-picker');
+                const due_Date=date_picker.value;
+                //linking todo and delete by id
+                //here we actually need to convert this number to a string,bcz while we are adding a new todo, 
+                //and trying to delete we can't,bcz it's id is a number, but the id that we get from array todo is a string version
+                //so when we compare it in a filter method it compares a string with number
+                createTodo(title,due_Date);
+                render();
+            }
+            //function to delete Todo
+            //it provides an event when we click on that
+             //Inside this event ,we can actually get the button that was clicked
+             //and the property for that is called is target
+            function deleteTodo(event){
+                const deleteButton=event.target;
+                const idToDelete=deleteButton.id;
+                //filter method doesn't actually modify the original array, it actually creates the copy of array
+                //with this todo removed,so in order to update the original array, we have to overwrite the arrays variable
+                //and to update our webpage we are going to call render as our last step.
+                removeTodo(idToDelete)
+                render()
+            }
+
+            function render(){
+                document.getElementById('todo-list').innerHTML='';
+                todo.forEach(function(todo){
+                    let element=document.createElement('div');
+                    element.innerText='Todo is: '+todo.title +' /due date is: '+todo.dueDate;
+                    //Adding delete button to each todo
+                    const deleteButton=document.createElement('button');
+                    deleteButton.innerText='Delete';
+                    deleteButton.style="margin-left:12px;"
+                    deleteButton.onclick=deleteTodo;
+                     //linking todo and delete by id
+                    deleteButton.id=todo.id;
+                    element.appendChild(deleteButton)
+
+                    let div_list=document.getElementById('todo-list');
+                    div_list.appendChild(element);
+                })             
+            }
+        </script>
+    </body>
+</html>

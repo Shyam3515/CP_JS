@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>My Todo App</title>
+    </head>
+    <body>
+        <!--Here Body is parent and remaining elements inside body are children-->
+        <button>Up</button>
+        <button>Down</button>
+        
+        <script>
+            document.title = 'Todo App!';
+            // alert('hello');
+            // console.log('hi');
+            //let means to create a variable
+            let todo1='Get groceries';
+            let todo2='Get car Wash';
+            let todo3='Make Dinner';
+            //create a HTMl element and div is the type of HTML element
+            let element = document.createElement('div');
+            //to change the text inside the HTML element,that we just created
+            element.innerText = "Adding Todo's..!";
+            //it is an instruction to add the element at the end of the body
+            document.body.append(element);
+
+            function todo(todoTitle){
+                element=document.createElement('div');
+                element.innerText=todoTitle;
+                document.body.appendChild(element);
+            }
+            todo(todo1)
+            todo(todo2)
+            todo(todo3)   
+            
+        </script>
+    </body>
+</html>

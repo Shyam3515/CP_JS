@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <button id="todo-button" onclick="todo()">click</button>
+        <!-- //2 -->
+        <div id="add">0</div>
+        <button onclick="add()">label up</button>
+        <button onclick="sub()">label down</button>
+        <script>
+            //1
+            function todo(){
+                document.getElementById('todo-button').innerText='hello'
+            }
+            //2
+            let count = 0;
+            function add(){
+                count = count + 1;
+                let add = document.getElementById('add');
+                add.innerText = count;
+            }
+            function sub(){
+                count = count - 1;
+                let add = document.getElementById('add');
+                add.innerText = count;
+            }
+        </script>
+    </body>
+</html>
