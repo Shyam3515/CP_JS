@@ -1,0 +1,30 @@
+<!-- //DOM combines HTML and JS together, it gives JS full control of the webpage -->
+<!-- HTML elements are javascript objects -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //document is a built-in object, using dot notation to access the properties of document object.
+        //similarly for body...
+
+        //this document.body, literally gets our body html and put's in our JS
+        //the innerHTML property controls all the html inside the JS
+
+        //This line replaces all the HTML inside body with a text changed.
+        document.body.innerHTML = 'Hello!';
+
+        //It can also replace all the text with new html
+        document.body.innerHTML = '<button>Good Job!</button>';
+
+        document.title='DOM'
+        //From this we can say that, document object represents / Models the webpage.
+        //In addition to properties document has also methods.
+    </script>
+</body>
+</html>

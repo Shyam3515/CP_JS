@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Functions are also called values
+        function name(){
+            console.log('hello1');
+        }
+        name();
+
+        //we can write a function inside a variable, just as a value and call variable-name to call
+        //function with brackets...
+        const function1 = function name(){
+            console.log('hello2');
+        }
+        function1();//calling or running functions
+
+        //you can write functions without names also when assigning to a variable and they are called
+        //anonymous functions...
+        const function2 = function(){
+            console.log('hello3');
+        }
+        function2();
+
+        //we can save functions inside objects
+        const object1 = {
+            num:2,
+            //function saved inside an object is called method.
+            fun:function(){
+                console.log('hello4')
+            }
+        };
+        //here fun(), is called method,
+        //as you can access function of an object.
+        object1.fun();
+
+        //passing values(params) into functions
+        function function3(param){
+            console.log(param)
+        }
+        function3('shyam');
+
+        //passing functions as parameters
+        function run (param){
+            param();
+        }
+        //the function we are passing is called a 'callback' function.
+        run(function(){
+            console.log('FuncInFunc')
+        })
+
+        //Arrow functions
+        const arrowFunction = () =>{
+            console.log('arrow')
+        }
+        arrowFunction();
+
+        //shortcuts
+        const oneParam = param =>{ //for one parameter non need of brackets
+            console.log(param)
+        }
+        oneParam('hi arrow');
+
+        const oneLine = () => 2+3;//automatically returns the function
+        console.log(oneLine());
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>hello</button>
+    <button class="js-button">Second Button</button>
+    <script>
+        //Method = function saved inside an object
+        //document.querySelector let's us get any element from web page
+        console.log(document.querySelector('button'));
+        //OUTPUT: <button>hello</button>
+        console.log(document.querySelector('button').innerHTML);
+        //OUTPUT:hello
+        document.querySelector('button').innerHTML = 'Changed';
+
+        // <!-- HTML elements are javascript objects -->
+        // So this second button is also a object
+        //objects are values and we can save them inside a variable.
+        const buttonElement = document.querySelector('.js-button').innerHTML;
+        console.log(buttonElement);
+
+    </script>
+   </body>
+</html>

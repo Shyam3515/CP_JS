@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DomProjects</title>
+</head>
+<body>
+
+    <!--Clicks and keydowns are called => events  -->
+    <!--OnClicks and Onkeydowns are called => addEventListeners  -->
+    <!-- Every Event listener will have event object  -->
+
+    <p>Subscribe here for updates</p>
+    <button class="sub" onclick="change()">Subscribe</button>
+
+    <br><br>
+    <input type="text" class="js-text"  placeholder="Cost of Order" onkeydown="
+        onkey(event) "
+    ></input>
+    <button onclick="calculate()">Calculate</button>
+    <p class="p-total"></p>
+    <script>
+        function change(){
+            let ele = document.querySelector('.sub');
+            if(ele.innerText === "Subscribe"){
+                ele.innerHTML = "Subscribed";
+            }else{
+                ele.innerHTML = "Subscribe";
+            }
+        }
+
+        function onkey(event){
+            if(event.key === 'Enter'){
+                calculate()
+            }
+        }
+        //when we add number to a string, js automatically converts no. to string
+        //and combines them both. This is called Type Coercion.
+
+        // 2 project
+
+        function calculate(){
+            const val = document.querySelector('.js-text');
+            let cost = Number(val.value);
+
+            if(cost<40){
+                cost+=10;
+            }
+            document.querySelector('.p-total').innerHTML = `$${cost}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //SETTIMEOUT allows us to run a function in future,it is also a function
+        //it takes two params, 1.func to run in future 2. time to run after
+        setTimeout(function(){
+            console.log('setTimeOut')
+        },3000);
+        //here setTimeout is called Asynchronous function,bcz it won't wait for a line to finish
+        //and continue to another line
+
+        //Remaining code that we write is called Synchronous code
+        console.log('next Line');
+
+        //SETINTERVAL, it is a function similar to timeout, but it executes continuously for 
+        //given interval of time.
+        setInterval(function(){
+            console.log('setInterval')
+        },3000)
+
+    </script>
+</body>
+</html>

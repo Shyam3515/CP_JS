@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Quantity</title>
+</head>
+<body>
+    <button onclick="cart(0)">Cart Quantity</button>
+    <button onclick="cart(1)">Add to cart</button>
+    <button onclick="cart(2)">+2</button>
+    <button onclick="cart(3)">+3</button>
+    <button onclick="cart(-1)">Reset Cart</button>
+
+    <script>
+        let value=0;
+        function cart(val){
+            value+=val;  
+            // console.log('value:',val,value)
+            if(val === 0){
+                if(value === 0){
+                    console.log('Cart is empty :( ');
+                }
+                else{
+                    console.log(`Items in Cart are: ${value} :)`)
+                } 
+            }
+            else if(val === 1){
+                console.log(`One item Added to cart, items in cart are: ${value}`)
+            }
+            else if(val === 2){
+                console.log(`Added Two items to cart, items in cart are: ${value}`)
+            }
+            else if(val === 3){
+                console.log(`Added Three items to cart, items in cart are: ${value}`)
+            }
+            else{
+                value=0;
+                console.log('Cart was reset..!  \nCart is empty :(')
+            }
+        }
+    </script>
+</body>
+</html>
